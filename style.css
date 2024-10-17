@@ -1,25 +1,28 @@
-
 body {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color:white;
+    background-color: white;
     font-family: 'Times New Roman', Times, serif;
-    overflow: hidden;
+    overflow: hidden; /* Hides the scrollbar */
 }
 
 .flowchart {
     display: flex;
     flex-direction: column;
     align-items: center;
+    max-width: 100%; /* Ensure the flowchart fits within the viewport */
+    overflow: hidden; /* Prevent overflow */
 }
 
 .horizontal {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 5px 0; /* Reduced the margin to minimize space */
+    margin: 5px 0;
+    max-width: 100%; /* Ensure the row fits within the viewport */
+    flex-wrap: wrap; /* Allow the process blocks to wrap on small screens */
 }
 
 .process {
@@ -31,17 +34,13 @@ body {
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
     text-align: center;
-    width: 180px; /* Set a fixed width */
+    width: 180px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Shadow effect */
     font-size: 18.5px;
 }
 
 .process:hover {
-    background-color: #006699; /* Change color on hover */
-}
-
-.process.visible {
-    background-color: #0099cc; /* Transition to blue when visible */
+    background-color: #006699;
 }
 
 .shipment {
@@ -55,7 +54,7 @@ body {
     width: 1000px; /* Set larger width to match the upper row combined */
     text-align: center;
     margin-top: 15px;
-    font-size: 30PX;
+    font-size: 25px;
 }
 
 .arrow {
@@ -73,23 +72,21 @@ body {
     border-style: solid;
     border-width: 10px 10px 0 10px;
     border-color: #0099cc transparent transparent transparent;
-    margin: 0; /* Removed margin to reduce spacing */
-    position: absolute; /* Make position absolute */
+    margin: 0;
+    position: absolute;
 }
 
-/* Positioning for the vertical arrow containers */
 .vertical-arrow-container {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center the vertical arrow */
-    position: relative; /* Keep relative positioning for the container */
+    align-items: center;
+    position: relative;
 }
 
-/* Position the vertical arrow below the process box */
 .vertical-arrow-container .arrow-vertical {
-    top: 100%; /* Position directly below the container */
-    left: 50%; /* Center the arrow horizontally */
-    transform: translateX(-50%); /* Adjust for centering */
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .arrow-left {
@@ -103,11 +100,11 @@ body {
         align-items: center;
     }
     .shipment {
-        width: 215px; /* Adjust width for smaller screens */
+        width: 90%; /* Make shipment responsive */
+        font-size: 20px;
     }
 }
 
-/* Fade-in effect */
 .hidden {
     opacity: 0;
     transition: opacity 2s ease;
@@ -115,5 +112,5 @@ body {
 
 .visible {
     opacity: 1;
-    transition: opacity 1s ease, background-color 0.3s ease; /* Add transition for color change */
+    transition: opacity 1s ease, background-color 0.3s ease;
 }
