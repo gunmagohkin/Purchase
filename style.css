@@ -32,6 +32,7 @@ body {
     text-align: center;
     width: 180px; /* Set a fixed width */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Shadow effect */
+    font-size: 18.5px;
 }
 
 .process:hover {
@@ -48,11 +49,12 @@ body {
     color: #0099cc;
     border: 2px solid #0099cc;
     font-weight: bold;
-    border-radius: 30px;
+    border-radius: 15px;
     transition: all 0.3s ease;
     width: 1000px; /* Set larger width to match the upper row combined */
     text-align: center;
     margin-top: 15px;
+    font-size: 30PX;
 }
 
 .arrow {
