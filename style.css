@@ -6,6 +6,7 @@ body {
     height: 100vh;
     background-color: #f4f4f4;
     font-family: 'Times New Roman', Times, serif;
+    overflow: hidden;
 }
 
 .flowchart {
