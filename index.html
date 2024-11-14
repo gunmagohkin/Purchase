@@ -4,41 +4,308 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive Production Flowchart</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* CSS for the flowchart structure */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: white;
+    font-family: 'Times New Roman', Times, serif;
+    overflow: hidden;
+}
+
+.flowchart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.horizontal {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Space elements evenly */
+    margin: 10px 0;
+    max-width: 100%;
+    flex-wrap: wrap;
+}
+
+.process {
+    padding: 10px 20px;
+    background: linear-gradient(45deg, #097afa, #4dd8e7);
+    color: white;
+    border-radius: 15px;
+    margin: 0 10px; /* Balanced margins for all blocks */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    text-align: center;
+    width: 180px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    font-size: 18.5px;
+}
+
+.process:hover {
+    background-color: #006699;
+}
+
+
+
+.arrow {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px 0 10px 10px;
+    border-color: transparent transparent transparent #0099cc;
+    margin: 0 10px;
+}
+
+.arrow-vertical {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px 10px 0 10px;
+    border-color: #0099cc transparent transparent transparent;
+    position: relative;
+    top: 10px; /* Adjusted for vertical alignment consistency */
+    bottom: 10px;
+}
+
+.vertical-arrow-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    margin-top: 10px;
+}
+
+.arrow-left {
+    transform: rotate(180deg);
+    border-color: transparent transparent transparent #0099cc;
+}
+
+.arrow-top {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px 10px 0 10px;
+    border-color: #0099cc transparent transparent transparent;
+    position: relative;
+    top: -15px;
+    bottom: 5px;
+}
+
+.arrow-top1 {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px 10px 0 10px;
+    border-color: #0099cc transparent transparent transparent;
+    position: relative;
+    top: -15px;
+    bottom: 5px;
+}
+
+@media (max-width: 768px) {
+    .horizontal {
+        flex-direction: column;
+        align-items: center;
+    }
+    .shipment {
+        width: 90%; /* Make shipment responsive */
+        font-size: 20px;
+    }
+}
+
+.hidden {
+    opacity: 0;
+    transition: opacity 2s ease;
+}
+
+.visible {
+    opacity: 1;
+    transition: opacity 1s ease, background-color 0.3s ease;
+}
+
+.shipment {
+    padding: 10px 0;
+    background-color: #ffffff;
+    color: #0099cc;
+    border: 2px solid #0099cc;
+    font-weight: bold;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    width: 1000px; /* Responsive width */
+    text-align: center;
+    font-size: 25px;
+    margin: 25px 0; /* Ensure spacing between layers */
+}
+
+.shipment1 {
+    padding: 10px 0;
+    background-color: #ffffff;
+    color: #0099cc;
+    border: 2px solid #0099cc;
+    font-weight: bold;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    width: 1000px; /* Set larger width to match the upper row combined */
+    text-align: center;
+    margin-top: 15px;
+    font-size: 25px;
+}
+    </style>
 </head>
 <body>
     <div class="flowchart">
+        <!-- Top Shipment Label -->
+        <div class="vertical-arrow-container">
+            <div class="shipment1">Product Specifications Development<br>Purchase Order Receipt</div> 
+        </div>
+
+
+        <!-- First Row -->
         <div class="horizontal">
-            <div class="process" data-step="Purchase Order Receipt">Purchase Order Receipt</div>
-            <div class="arrow"></div>
-            <div class="process step-2" data-step="Die Mould Design">Die Mould Design</div>
-            <div class="arrow"></div>
-            <div class="process step-3" data-step="Die Mould Fabrication">Die Mould Fabrication</div>
-            <div class="arrow"></div>
+            <!-- Vertical Arrow above 3D Modeling -->
             <div class="vertical-arrow-container">
-                <div class="process step-4" data-step="Die-casting">Die-casting</div>
+                <div class="arrow-top1"></div>
+                <div class="process" data-step="3D Modeling">3D Modeling <br> Die-Mould Design</div>
+            </div>
+            <div class="arrow "></div>
+            <div class="process step-2" data-step="Die-Mould Fabrication">Die-Mould<br>Fabrication</div>
+            <div class="arrow 4"></div>
+            <div class="process step-3" data-step="Diecasting Trimming">Diecasting <br> Trimming</div>
+            <div class="arrow 5"></div>
+            <div class="vertical-arrow-container">
+                <div class="process step-4" data-step="Shotblasting">Shotblasting<br>Deburring</div>
                 <div class="arrow-vertical"></div> <!-- Centered arrow below Die-casting -->
+                
             </div>
         </div>
-        
-        
+
+        <!-- Second Row -->
         <div class="horizontal">
             <!-- Container for Inspection and Vertical Arrow -->
             <div class="vertical-arrow-container">
-                <div class="process" data-step="Inspection">Inspection</div>
+                <div class="process step-8" data-step="Measurement">Measurement<br>Inspection</div>
                 <div class="arrow-vertical"></div> <!-- Centered arrow below Inspection -->
+
             </div>
-            <div class="arrow arrow-left"></div>
-            <div class="process" data-step="Surface Treatment">Surface Treatment</div>
-            <div class="arrow arrow-left"></div>
-            <div class="process" data-step="Machining">Machining</div>
-            <div class="arrow arrow-left"></div>
-            <div class="process" data-step="Deburring">Deburring</div>
+            <div class="arrow arrow-left 7"></div>
+            <div class="process step-7" data-step="Labeling">Labeling<br>Packing</div>
+            <div class="arrow arrow-left 6"></div>
+            <div class="process step-6" data-step="Machining">Machining<br>Insertion</div>
+            <div class="arrow arrow-left 5"></div>
+            <div class="process step-5" data-step="Painting">Painting<br>Coating</div>
         </div>
-
-        <div class="shipment">Shipment</div>
+        <!-- Bottom Shipment Label -->
+        <div class="shipment">Document & Shipment to <br> Domestic & Overseas </div>
     </div>
+   
 
-    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const processSteps = document.querySelectorAll('.process');
+            const arrows = document.querySelectorAll('.arrow');
+            const verticalArrows = document.querySelectorAll('.arrow-vertical');
+            const topArrows = document.querySelectorAll('.arrow-top');
+            const topArrows1 = document.querySelectorAll('.arrow-top1');
+            const shipment1 = document.querySelector('.shipment1');
+            const shipment = document.querySelector('.shipment');
+    
+            // Initially hide all process steps, arrows, and shipment labels
+            processSteps.forEach(step => step.classList.add('hidden'));
+            arrows.forEach(arrow => arrow.classList.add('hidden'));
+            verticalArrows.forEach(arrow => arrow.classList.add('hidden'));
+            topArrows.forEach(arrow => arrow.classList.add('hidden'));
+            topArrows1.forEach(arrow => arrow.classList.add('hidden'));
+            shipment1.classList.add('hidden');
+            shipment.classList.add('hidden');
+    
+            // Function to sequentially display each arrow first, then its process step
+            const showFlowSequentially = () => {
+                let delay = 1000; // Initial delay
+    
+                // Show the first shipment
+                setTimeout(() => {
+                    shipment1.classList.remove('hidden');
+                    shipment1.classList.add('visible');
+                }, delay);
+                delay += 1000;
+    
+                // Show the top arrow after shipment1
+                setTimeout(() => {
+                    topArrows1[0].classList.remove('hidden');
+                    topArrows1[0].classList.add('visible');
+                }, delay);
+                delay += 1000;
+    
+                // First row (left-to-right)
+                [0, 1, 2, 3].forEach(index => {
+                    if (index > 0) {
+                        setTimeout(() => {
+                            arrows[index - 1].classList.remove('hidden');
+                            arrows[index - 1].classList.add('visible');
+                        }, delay);
+                        delay += 500;
+                    }
+    
+                    setTimeout(() => {
+                        processSteps[index].classList.remove('hidden');
+                        processSteps[index].classList.add('visible');
+                    }, delay);
+                    delay += 1000;
+                });
+    
+                // Show the vertical arrow for the "Shotblasting" step
+                setTimeout(() => {
+                    verticalArrows[0].classList.remove('hidden');
+                    verticalArrows[0].classList.add('visible');
+                }, delay);
+                delay += 500;
+    
+                // Second row (right-to-left)
+                [7, 6, 5, 4].forEach(index => {
+                    setTimeout(() => {
+                        arrows[index - 1].classList.remove('hidden');
+                        arrows[index - 1].classList.add('visible');
+                    }, delay);
+                    delay += 500;
+    
+                    setTimeout(() => {
+                        processSteps[index].classList.remove('hidden');
+                        processSteps[index].classList.add('visible');
+                    }, delay);
+                    delay += 1000;
+                });
+    
+                // Show the vertical arrow for the "Measurement" step
+                setTimeout(() => {
+                    verticalArrows[1].classList.remove('hidden');
+                    verticalArrows[1].classList.add('visible');
+                }, delay);
+                delay += 500;
+    
+                // Show the top arrow for the final shipment step
+                setTimeout(() => {
+                    topArrows[0].classList.remove('hidden');
+                    topArrows[0].classList.add('visible');
+                }, delay);
+                delay += 500;
+    
+                // Final shipment label
+                setTimeout(() => {
+                    shipment.classList.remove('hidden');
+                    shipment.classList.add('visible');
+                }, delay);
+            };
+    
+            // Start the animation
+            showFlowSequentially();
+        });
+    </script>
+        
 </body>
 </html>
